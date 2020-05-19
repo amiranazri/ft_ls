@@ -12,7 +12,7 @@
 
 typedef struct s_list
 {
-	DIR		*directorty;
+	DIR		*directory;
 	struct	dirent *file;
 	struct	s_list *next;
 	struct	group *group_ptr;
