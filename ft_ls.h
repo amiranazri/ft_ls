@@ -30,7 +30,7 @@ typedef struct s_list
 }				t_list;
 
 void	ft_ls(char *tmp);
-void	args(char *tmp);
+void	arguments(char *tmp);
 void	ft_ls_r(t_list *items);
 void	ft_ls_R(const char *tmp);
 void	ft_ls_a(char *tmp);
