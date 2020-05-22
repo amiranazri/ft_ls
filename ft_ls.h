@@ -24,17 +24,16 @@ typedef struct s_list
 	char	flag;
 	char	*buf;
 	char	*tmp;
+	char	*data_name;
 	char	**buffer;
-	char	*item_name;
 	char	*path;
 }				t_list;
 
 void	ft_ls(char *tmp);
 void	arguments(char *tmp);
-void	ft_ls_r(t_list *items);
-void	ft_ls_R(const char *tmp);
+void	ft_ls_recursive(const char *tmp);
+void    ft_ls_r(const char *itm);
 void	ft_ls_a(char *tmp);
 void	ft_ls_l(char *tmp);
-// void 	sort(t_list **list, int(*cmp)(t_list *, t_list *));
 
 #endif
