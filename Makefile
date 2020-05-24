@@ -12,7 +12,7 @@ HEADER = ft_ls.h
 ERRORS = -Wall -Werror -Wextra
 LIBFT = libft/
 
-SRC = main.c arguments.c ft_ls.c ft_ls_recursive.c ft_ls_r.c ft_ls_a.c ft_ls_l.c
+SRC = sort.c arguments.c add_node.c main.c ft_ls.c ft_ls_recursive.c ft_ls_r.c ft_ls_a.c ft_ls_l.c
 
 $(NAME):
 	@echo "${CYAN}Creating LIBFT${NC}" #prints text

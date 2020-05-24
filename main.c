@@ -1,18 +1,29 @@
 #include "ft_ls.h"
 
+// int main()
+// {
+//     t_list *list;
+
+//     list = (t_list *)malloc(sizeof(t_list));
+//     list->data_name = "jelly";
+//     list->next = (t_list *)malloc(sizeof(t_list));
+//     list->next->data_name = "bananas";
+//     list->next->next = (t_list *)malloc(sizeof(t_list));
+//     list->next->next->data_name = "cofefe";
+//     list->next->next->next = (t_list *)malloc(sizeof(t_list));
+//     list->next->next->next = NULL;
+
+//     ft_sort(list);
+//     while (list != NULL)
+//     {
+//         ft_putendl(list->data_name);
+//         list = list->next;
+//     }
+// }
+
 t_bool	has_flags(char *flag)
 {
    return (flag[0] == '-' ? true : false);
-}
-
-t_bool	has_a(char *flag)
-{
-   return (flag[1] == 'a' ? true : false);
-}
-
-t_bool   has_l(char *flag)
-{
-   return (flag[1] == 'l' ? true : false);
 }
 
 t_bool	is_recursive(char *flag)
@@ -23,6 +34,16 @@ t_bool	is_recursive(char *flag)
 t_bool	is_reversed(char *flag)
 {
    return (flag[1] == 'r' ? true : false);
+}
+
+t_bool	has_a(char *flag)
+{
+   return (flag[1] == 'a' ? true : false);
+}
+
+t_bool   has_l(char *flag)
+{
+   return (flag[1] == 'l' ? true : false);
 }
 
 int	main(int ac, char **av)
@@ -50,7 +71,7 @@ int	main(int ac, char **av)
       else if (ac == 3 && has_l(av[1]))
          ft_ls_l(av[2]);
       else
-         ft_putendl("The specified flags do not exist.");
+         ft_putendl("error message ...");
    }
    return (0);
 }

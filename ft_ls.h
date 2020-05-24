@@ -15,11 +15,11 @@ typedef struct s_list
 	DIR		*directory;
 	struct	dirent *file;
 	struct	s_list *next;
-	struct	group *group_ptr;
-	struct	passwd *password_ptr;
+	// struct	group *group_ptr;
+	// struct	passwd *password_ptr;
 	struct	stat status;
-	struct	passwd password;
-	struct	group group;
+	// struct	passwd password;
+	// struct	group group;
 	struct	tm time;
 	char	flag;
 	char	*buf;
@@ -31,9 +31,11 @@ typedef struct s_list
 
 void	ft_ls(char *tmp);
 void	arguments(char *tmp);
+void	add_node(t_list **head, char *file_name);
 void	ft_ls_recursive(const char *tmp);
 void    ft_ls_r(const char *itm);
 void	ft_ls_a(char *tmp);
 void	ft_ls_l(char *tmp);
+void	ft_sort(t_list *tmp);
 
 #endif
