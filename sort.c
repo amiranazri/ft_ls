@@ -20,37 +20,14 @@ void ft_sort(t_list *tmp)
        
         if (ft_strcmp(tmp->data_name, tmp->next->data_name) > 0)
         {
-            str = tmp->fileName;
-			tmp->fileName = tmp->fw->fileName;
-			tmp->fw->fileName = str;
-			tmp = head;
+            cont = tmp->data_name;
+			tmp->data_name = tmp->next->data_name;
+			tmp->next->data_name = cont;
+			tmp = start;
         }
         else 
             tmp = tmp->next; 
     }
-}
-
-void	sortAscii(t_ls *tmp)
-{
-	t_ls		*head;
-	char		*str;
-
-	head = (t_ls *)malloc(sizeof(t_ls));
-	head = tmp;
-	while (tmp->fw != NULL)
-	{
-		if (tmp->fileName == NULL)
-			tmp = tmp->fw;
-		if (ft_strcmp(tmp->fileName, tmp->fw->fileName) > 0)
-		{
-			str = tmp->fileName;
-			tmp->fileName = tmp->fw->fileName;
-			tmp->fw->fileName = str;
-			tmp = head;
-		}
-		else
-			tmp = tmp->fw;
-	}
-	tmp->fw = NULL;
-	tmp = head;
+	tmp->next = NULL;
+	tmp = start;
 }

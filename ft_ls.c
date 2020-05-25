@@ -12,7 +12,7 @@ void ft_ls(char *tmp)
 	{
 		data.buf = ft_strjoin(tmp, data.file->d_name);
 		stat(data.buf, &data.status);  
-		add_node(&head, data.buf);
+		add_node(head, data.buf);
 		ft_sort(&data);
 		ft_putchar(32);
 		// print_list(head);
