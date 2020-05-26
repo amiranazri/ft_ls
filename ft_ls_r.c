@@ -1,26 +1,20 @@
 #include "ft_ls.h"
 
-void    ft_ls_r(const char *itm)
+void ft_ls_r(char *tmp)
 {
-	char		*container;
-	t_list		*data;
-	t_list		*tmp;
+	t_list	data;
+	t_list	pos;
+	t_list	*list;
 
-
-	itm = data->next->data_name;
-	tmp = data;
-	while (data->next)
+	data.directory = opendir(".");
+	list = NULL;
+	while ((data.file = readdir(data.directory)) != NULL)
 	{
-		if ((ft_strcmp(data->next->data_name, data->data_name)) > 0)
-		{
-			container = data->data_name;
-			data->data_name = data->next->data_name;
-			data->next->data_name = container;
-			data = tmp;
-		}
-		else
-			data = data->next;
+		if (data.file->d_name[0] == '.')
+			continue;
+		list = add_node(list, data.file->d_name);
 	}
-	data->next = NULL;
-	data = tmp;
+	ft_reverse_sort(list);
+	print_list(list);
+	closedir(data.directory);
 }

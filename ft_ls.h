@@ -32,11 +32,13 @@ typedef struct s_list
 void	ft_ls(char *tmp);
 void	arguments(char *tmp);
 void    print_list(t_list *head);
-void	add_node(t_list *head, char *file_name);
+void    insert_node(char *file_name, t_list *node);
 void	ft_ls_recursive(const char *tmp);
-void    ft_ls_r(const char *itm);
+void	ft_ls_r(char *tmp);
 void	ft_ls_a(char *tmp);
 void	ft_ls_l(char *tmp);
 void	ft_sort(t_list *tmp);
+void	ft_reverse_sort(t_list *tmp);
+t_list	*add_node(t_list *head, char *file_name); 
 
 #endif
