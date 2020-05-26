@@ -16,7 +16,7 @@ void ft_ls(char *tmp)
 	{
 		head->buf = data.file->d_name;
 		add_node(head, data.buf);
-		ft_putendl(head->buf);
+		// ft_putendl(head->buf);
 		// head = head->next;
 		// ft_putendl(data.buf);
 		// stat(data.buf, &data.status);  
@@ -26,5 +26,6 @@ void ft_ls(char *tmp)
 		//free(data.buf);
 	}
 	ft_sort(head);
+	print_list(head);
 	closedir(data.directory);
 }
