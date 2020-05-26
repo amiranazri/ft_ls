@@ -26,7 +26,7 @@
 //     }
 // }
 
-void ft_ls(char *tmp)
+void ft_ls_l(char *tmp)
 {
 	t_list	data;
 	t_list	pos;
