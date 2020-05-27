@@ -62,3 +62,25 @@ void ft_reverse_sort(t_list *tmp)
 	tmp->next = NULL;
 	tmp = start;
 }
+
+// void ft_time_sort(t_list *tmp)
+// {
+//     t_list  *status;
+
+//     stat(,&status);
+//     /* newline included in ctime() output */
+//     printf(" File access time %s",
+//             ctime(&filestat.st_atime)
+//           );
+//     printf(" File modify time %s",
+//             ctime(&filestat.st_mtime)
+//           );
+//     printf("File changed time %s",
+//             ctime(&filestat.st_ctime)
+//           );
+//     printf("  File birth time %s",
+//             ctime(&filestat.st_birthtime)
+//           );
+
+//     return(0);
+// }
