@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-void ft_ls(char *tmp)
+void ft_ls_t(char *tmp)
 {
 	t_list	data;
 	t_list	pos;
@@ -14,7 +14,7 @@ void ft_ls(char *tmp)
 			continue;
 		list = add_node(list, data.file->d_name);
 	}
-	ft_sort(list);
+	ft_time_sort(list);
 	print_list(list);
 	closedir(data.directory);
 }

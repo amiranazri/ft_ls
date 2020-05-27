@@ -46,6 +46,11 @@ t_bool   has_l(char *flag)
    return (flag[1] == 'l' ? true : false);
 }
 
+t_bool   has_t(char *flag)
+{
+   return (flag[1] == 't' ? true : false);
+}
+
 int	main(int ac, char **av)
 {
    if (ac == 1)
@@ -69,7 +74,11 @@ int	main(int ac, char **av)
       else if (ac == 2 && has_l(av[1]))
          ft_ls_l(".");
       else if (ac == 3 && has_l(av[1]))
-         ft_ls_l(av[2]);
+         ft_ls_t(av[2]);
+         else if (ac == 2 && has_t(av[1]))
+         ft_ls_t(".");
+      else if (ac == 3 && has_t(av[1]))
+         ft_ls_t(av[2]);
       else
          ft_putendl("error message ...");
    }

@@ -63,24 +63,37 @@ void ft_reverse_sort(t_list *tmp)
 	tmp = start;
 }
 
-// void ft_time_sort(t_list *tmp)
-// {
-//     t_list  *status;
+void ft_time_sort(t_list *tmp)
+{
+    struct stat status;
+    struct stat status2;
+    t_list  *start;
+    char    *cont;
 
-//     stat(,&status);
-//     /* newline included in ctime() output */
-//     printf(" File access time %s",
-//             ctime(&filestat.st_atime)
-//           );
-//     printf(" File modify time %s",
-//             ctime(&filestat.st_mtime)
-//           );
-//     printf("File changed time %s",
-//             ctime(&filestat.st_ctime)
-//           );
-//     printf("  File birth time %s",
-//             ctime(&filestat.st_birthtime)
-//           );
+    start = (t_list *)malloc(sizeof(t_list));
+    start = tmp;
+    while (tmp->next != NULL)
+    {
+        stat(tmp->data_name, &status);
+        stat(tmp->next->data_name, &status2);
 
-//     return(0);
-// }
+        if (tmp->data_name == NULL)
+        {
+            tmp = tmp->next;
+            continue ;
+        }
+
+        // if (ft_strcmp(ctime(&status.st_mtime), ctime(&status2.st_mtime)) < 0)
+        if ((&status.st_mtime) < (&status2.st_mtime)) //compares using integers not modified time
+        {
+            cont = tmp->data_name;
+			tmp->data_name = tmp->next->data_name;
+			tmp->next->data_name = cont;
+			tmp = start;
+        }
+        else 
+            tmp = tmp->next; 
+    }
+	tmp->next = NULL;
+	tmp = start;
+}
