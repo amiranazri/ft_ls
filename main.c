@@ -93,6 +93,6 @@ int	main(int ac, char **av)
       else
          ft_putendl("error message ...");
    }
-   sleep(30);
+   // sleep(30);
    return (0);
 }

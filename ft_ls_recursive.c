@@ -2,7 +2,8 @@
 
 void	ft_ls_recursive(const char *tmp)
 {
-	t_list data;
+	t_list	data;
+	struct stat	status;
 
 	data.directory = opendir(tmp);
 	tmp = ft_strdup(tmp);
@@ -17,9 +18,11 @@ void	ft_ls_recursive(const char *tmp)
 		if ((data.file->d_type) == DT_DIR)
 		{
 			data.buf = ft_strnew(1024);
-			if ((ft_strcmp(data.file->d_name, ".")) == 0 || (ft_strcmp(data.file->d_name, "..")) == 0)
+			if (data.file->d_name[0] == '.')
 				continue;
 			data.buf = ft_strjoin(tmp, data.file->d_name);
+			ft_putchar(10);
+			ft_putstr("./");
 			ft_putendl(data.file->d_name);
 			ft_ls_recursive(data.buf);
 		}

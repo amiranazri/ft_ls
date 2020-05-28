@@ -15,12 +15,12 @@ typedef struct s_list
 	DIR		*directory;
 	struct	dirent *file;
 	struct	s_list *next;
+	// struct	group group;
 	// struct	group *group_ptr;
 	// struct	passwd *password_ptr;
 	// struct	stat status;
 	// struct	passwd *password;
 	struct	node *node;
-	struct	group group;
 	struct	tm time;
 	char	flag;
 	char	*buf;
@@ -43,6 +43,7 @@ void	ft_ls_t(char *tmp);
 void	ft_sort(t_list *tmp);
 void	ft_reverse_sort(t_list *tmp);
 void	ft_time_sort(t_list *tmp);
+void	deleteAllNodes(t_list *start);
 t_list	*add_node(t_list *head, char *file_name); 
 
 #endif

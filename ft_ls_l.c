@@ -1,5 +1,23 @@
 #include "ft_ls.h"
 
+int	ft_blocks(t_list *tmp)
+{
+	int i;
+	struct stat status;
+	t_list	*cont;
+	
+	i = 0;
+	cont = tmp;
+	while(cont->next != NULL)
+	{
+		if(stat(cont->data_name,&status) < 0)
+			return (0);
+		i += status.st_blocks;
+		cont = cont->next;
+	}
+	return (i);
+}
+
 void ft_permissions(struct stat status)
 {
 	(S_ISDIR(status.st_mode)) ? ft_putchar('d') : ft_putchar('-');
@@ -22,19 +40,22 @@ void ft_ls_l(char *tmp)
 	struct passwd	*password;
 	struct stat		status;
 
-	i = 0;
 	if(stat(tmp, &status) < 0)
 		return ;
+	i = 0;
 	ft_permissions(status);
 	ft_putchar(32);
 	ft_putnbr(status.st_nlink);
 	ft_putchar(9);
-	if((password = getpwuid(status.st_uid) != 0))
+	
+	password = getpwuid(status.st_uid);
+	group = getgrgid(status.st_gid);
+	if(password != NULL)
 	{
 		ft_putstr(password->pw_name);
 		ft_putchar(32);
 	}
-	if ((password = getgrid(status.st_gid) != 0))
+	if ((group != NULL))
 	{
 		ft_putstr(group->gr_name);
 		ft_putchar(9);
