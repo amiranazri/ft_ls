@@ -51,6 +51,17 @@ t_bool   has_t(char *flag)
    return (flag[1] == 't' ? true : false);
 }
 
+void deleteAllNodes(t_list *start)
+{
+   t_list *tmp;
+    while (start != NULL)
+    { 
+        tmp = start; 
+        start = start -> next;
+        free(tmp);
+    }
+}
+
 int	main(int ac, char **av)
 {
    if (ac == 1)
@@ -74,7 +85,7 @@ int	main(int ac, char **av)
       else if (ac == 2 && has_l(av[1]))
          ft_ls_l(".");
       else if (ac == 3 && has_l(av[1]))
-         ft_ls_t(av[2]);
+         ft_ls_l(av[2]);
          else if (ac == 2 && has_t(av[1]))
          ft_ls_t(".");
       else if (ac == 3 && has_t(av[1]))
@@ -82,5 +93,6 @@ int	main(int ac, char **av)
       else
          ft_putendl("error message ...");
    }
+   sleep(30);
    return (0);
 }

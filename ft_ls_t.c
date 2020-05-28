@@ -13,7 +13,10 @@ void ft_ls_t(char *tmp)
 			continue;
 		list = add_node(list, data.file->d_name);
 	}
-	ft_time_sort(list);
-	print_list(list);
+	 if (list != NULL)
+        {
+			ft_time_sort(list);
+			print_list(list);   
+        }
 	closedir(data.directory);
 }

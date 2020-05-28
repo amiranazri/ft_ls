@@ -1,46 +1,59 @@
 #include "ft_ls.h"
 
-// void ft_ls_l(char *tmp)
-// {
-// 	int	i;
-// 	t_list data;
-
-// 	if (!(data.directory = opendir(tmp)))
-// 	return;
-	
-//     data.buffer = (char **)malloc(sizeof(data.directory) + 1);
-	
-//     i = 0;
-// 	while(data.file == readdir(data.directory))
-// 	{
-// 		data.buffer[i] = ft_strdup((data.file)->d_name);
-// 		i++;
-// 	}
-	
-//     // ft_sort(&data, sizeof(data.directory));
-// 	i = 0;
-// 	while (data.buffer[i])
-//     {
-//         ft_putendl(data.buffer[i++]);
-//         closedir(data.directory);
-//     }
-// }
+void ft_permissions(struct stat status)
+{
+	(S_ISDIR(status.st_mode)) ? ft_putchar('d') : ft_putchar('-');
+	(status.st_mode & S_IRUSR) ? ft_putchar('r') : ft_putchar('-');
+	(status.st_mode & S_IWUSR) ? ft_putchar('w') : ft_putchar('-');
+	(status.st_mode & S_IRGRP) ? ft_putchar('r') : ft_putchar('-');
+	(status.st_mode & S_IWGRP) ? ft_putchar('w') : ft_putchar('-');
+	(status.st_mode & S_IXGRP) ? ft_putchar('x') : ft_putchar('-');
+	(status.st_mode & S_IROTH) ? ft_putchar('r') : ft_putchar('-');
+	(status.st_mode & S_IWOTH) ? ft_putchar('w') : ft_putchar('-');
+	(status.st_mode & S_IXOTH) ? ft_putchar('x') : ft_putchar('-');
+}
 
 void ft_ls_l(char *tmp)
 {
-	t_list	data;
-	t_list	pos;
-	t_list	*list;
+	int		i;
+	char	**array;
+	struct node		*node;
+	struct group	*group;
+	struct passwd	*password;
+	struct stat		status;
 
-	data.directory = opendir(".");
-	list = NULL;
-	while ((data.file = readdir(data.directory)) != NULL)
+	i = 0;
+	if(stat(tmp, &status) < 0)
+		return ;
+	ft_permissions(status);
+	ft_putchar(32);
+	ft_putnbr(status.st_nlink);
+	ft_putchar(9);
+	if((password = getpwuid(status.st_uid) != 0))
 	{
-		if (data.file->d_name[0] == '.')
-			continue;
-		list = add_node(list, data.file->d_name);
+		ft_putstr(password->pw_name);
+		ft_putchar(32);
 	}
-	ft_sort(list);
-	print_list(list);
-	closedir(data.directory);
+	if ((password = getgrid(status.st_gid) != 0))
+	{
+		ft_putstr(group->gr_name);
+		ft_putchar(9);
+	}
+	ft_putnbr(status.st_size);
+	ft_putchar(9);
+	array = (char **)malloc(sizeof(char *) + 20);
+	array = ft_strsplit(ctime(&status.st_mtime), 32);
+	ft_putstr(array[1]);
+	ft_putchar(32);
+	ft_putstr(array[2]);
+	ft_putchar(32);
+	while (i < 5)
+	{
+		ft_putstr(&array[3][i++]);
+		ft_putchar(32);
+		ft_putstr(tmp);
+		ft_putchar(32);
+		ft_putchar(10);
+	}
+	free(array);
 }

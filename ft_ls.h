@@ -17,9 +17,10 @@ typedef struct s_list
 	struct	s_list *next;
 	// struct	group *group_ptr;
 	// struct	passwd *password_ptr;
-	struct	stat status;
-	// struct	passwd password;
-	// struct	group group;
+	// struct	stat status;
+	// struct	passwd *password;
+	struct	node *node;
+	struct	group group;
 	struct	tm time;
 	char	flag;
 	char	*buf;
@@ -27,6 +28,7 @@ typedef struct s_list
 	char	*data_name;
 	char	**buffer;
 	char	*path;
+	long	date;
 }				t_list;
 
 void	ft_ls(char *tmp);

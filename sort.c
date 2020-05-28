@@ -31,6 +31,7 @@ void ft_sort(t_list *tmp)
     }
 	tmp->next = NULL;
 	tmp = start;
+    deleteAllNodes(start);
 }
 
 void ft_reverse_sort(t_list *tmp)
@@ -77,16 +78,8 @@ void ft_time_sort(t_list *tmp)
     {
         stat(tmp->data_name, &status1);
         stat(tmp->next->data_name, &status2);
-        if (tmp->data_name == NULL)
-        {
-            tmp = tmp->next;
-            continue ;
-        }
-        printf("1=%ld\n", time(&status1.st_mtime));
-        printf("2=%ld\n", time(&status2.st_mtime));
-
-        if ((time(&status1.st_mtime) < time(&status2.st_mtime)))
-        // if ((&status.st_mtime) < (&status2.st_mtime)) //compares using integers not modified time
+       
+        if (((status1.st_mtime) < (status2.st_mtime)))
         {
             cont = tmp->data_name;
 			tmp->data_name = tmp->next->data_name;
