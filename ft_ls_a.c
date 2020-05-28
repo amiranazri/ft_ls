@@ -10,7 +10,7 @@ void ft_ls_a(char *tmp)
 	list = NULL;
 	while ((data.file = readdir(data.directory)) != NULL)
 	{
-		list = add_node(list, data.file->d_name);
+		list = add_node(list, data.file->d_name, 0);
 	}
 	ft_sort(list);
 	print_list(list);

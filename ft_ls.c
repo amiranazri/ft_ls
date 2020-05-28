@@ -12,7 +12,7 @@ void ft_ls(char *tmp)
 	{
 		if (data.file->d_name[0] == '.')
 			continue;
-		list = add_node(list, data.file->d_name);
+		list = add_node(list, data.file->d_name, 0);
 	}
 	ft_sort(list);
 	print_list(list);
