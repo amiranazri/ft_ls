@@ -15,6 +15,6 @@ void ft_ls_r(char *tmp)
 		list = add_node(list, data.file->d_name);
 	}
 	ft_reverse_sort(list);
-	print_list(list);
+	ft_print_list(list);
 	closedir(data.directory);
 }

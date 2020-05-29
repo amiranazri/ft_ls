@@ -13,6 +13,6 @@ void ft_ls_a(char *tmp)
 		list = add_node(list, data.file->d_name);
 	}
 	ft_sort(list);
-	print_list(list);
+	ft_print_list(list);
 	closedir(data.directory);
 }

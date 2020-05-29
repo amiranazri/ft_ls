@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-void    print_list(t_list *head)
+void    ft_print_list(t_list *head)
 {
     t_list	*tmp;
 

@@ -16,7 +16,7 @@ void ft_ls_t(char *tmp)
 	 if (list != NULL)
         {
 			ft_time_sort(list);
-			print_list(list);   
+			ft_print_list(list);   
         }
 	closedir(data.directory);
 }

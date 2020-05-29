@@ -51,16 +51,16 @@ t_bool   has_t(char *flag)
    return (flag[1] == 't' ? true : false);
 }
 
-void deleteAllNodes(t_list *start)
-{
-   t_list *tmp;
-    while (start != NULL)
-    { 
-        tmp = start; 
-        start = start -> next;
-        free(tmp);
-    }
-}
+// void deleteAllNodes(t_list *start)
+// {
+//    t_list *tmp;
+//     while (start != NULL)
+//     { 
+//         tmp = start; 
+//         start = start -> next;
+//         free(tmp);
+//     }
+// }
 
 int	main(int ac, char **av)
 {

@@ -31,7 +31,6 @@ void ft_sort(t_list *tmp)
     }
 	tmp->next = NULL;
 	tmp = start;
-    deleteAllNodes(start);
 }
 
 void ft_reverse_sort(t_list *tmp)

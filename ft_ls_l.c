@@ -1,11 +1,23 @@
 #include "ft_ls.h"
 
+void ft_loop_list(t_list *tmp)
+{
+	t_list	*list;
+
+	list = tmp;
+	while (list->next != NULL)
+	{
+		ft_ls_long(list->data_name);
+		list = list->next;
+	}
+}
+
 int	ft_blocks(t_list *tmp)
 {
 	int i;
 	struct stat status;
 	t_list	*cont;
-	
+
 	i = 0;
 	cont = tmp;
 	while(cont->next != NULL)
@@ -31,10 +43,38 @@ void ft_permissions(struct stat status)
 	(status.st_mode & S_IXOTH) ? ft_putchar('x') : ft_putchar('-');
 }
 
-void ft_ls_l(char *tmp)
+void ft_ls_l(char *path)
 {
-	int		i;
-	char	**array;
+	int		total_blocks;
+	t_list	*list;
+	t_list	data;
+
+	data.directory = opendir(".");
+	list = NULL;
+	while ((data.file = readdir(data.directory)) != NULL)
+	{
+		if (data.file->d_name[0] == '.')
+			continue;
+		list = add_node(list, data.file->d_name);
+	}
+	 if (list != NULL)
+        {
+			ft_sort(list);
+			total_blocks = ft_blocks(list);
+			ft_putstr("total ");
+			ft_putnbr(total_blocks);
+			ft_putchar(10);
+			ft_loop_list(list);
+		}
+	closedir(data.directory);
+}
+
+void ft_ls_long(char *tmp)
+{
+	int				i;
+	// char			**array;
+	char			*array1;
+	char			*array2;
 	struct node		*node;
 	struct group	*group;
 	struct passwd	*password;
@@ -47,34 +87,25 @@ void ft_ls_l(char *tmp)
 	ft_putchar(32);
 	ft_putnbr(status.st_nlink);
 	ft_putchar(9);
-	
-	password = getpwuid(status.st_uid);
-	group = getgrgid(status.st_gid);
-	if(password != NULL)
+
+	if((password = getpwuid(status.st_uid)) != NULL)
 	{
 		ft_putstr(password->pw_name);
 		ft_putchar(32);
 	}
-	if ((group != NULL))
+	if ((group = getgrgid(status.st_gid)) != NULL)
 	{
 		ft_putstr(group->gr_name);
 		ft_putchar(9);
 	}
 	ft_putnbr(status.st_size);
 	ft_putchar(9);
-	array = (char **)malloc(sizeof(char *) + 20);
-	array = ft_strsplit(ctime(&status.st_mtime), 32);
-	ft_putstr(array[1]);
+	array1 = ctime(&(status.st_mtime)) + 4;
+	array2 = ft_strsub(array1, 0, 12);
+	ft_putstr(array2);
 	ft_putchar(32);
-	ft_putstr(array[2]);
+	ft_putstr(tmp);
 	ft_putchar(32);
-	while (i < 5)
-	{
-		ft_putstr(&array[3][i++]);
-		ft_putchar(32);
-		ft_putstr(tmp);
-		ft_putchar(32);
-		ft_putchar(10);
-	}
-	free(array);
+	ft_putchar(10);
+	free(array2);
 }
