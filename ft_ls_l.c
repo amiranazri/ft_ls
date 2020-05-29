@@ -49,7 +49,7 @@ void ft_ls_l(char *path)
 	t_list	*list;
 	t_list	data;
 
-	data.directory = opendir(".");
+	data.directory = opendir(path);
 	list = NULL;
 	while ((data.file = readdir(data.directory)) != NULL)
 	{
@@ -72,7 +72,6 @@ void ft_ls_l(char *path)
 void ft_ls_long(char *tmp)
 {
 	int				i;
-	// char			**array;
 	char			*array1;
 	char			*array2;
 	struct node		*node;

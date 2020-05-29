@@ -32,6 +32,7 @@ typedef struct s_list
 }				t_list;
 
 int		ft_blocks(t_list *tmp);
+void 	ft_check(char *tmp);
 void	ft_ls(char *tmp);
 void	arguments(char *tmp);
 void    ft_print_list(t_list *head);

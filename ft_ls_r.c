@@ -6,7 +6,7 @@ void ft_ls_r(char *tmp)
 	t_list	pos;
 	t_list	*list;
 
-	data.directory = opendir(".");
+	data.directory = opendir(tmp);
 	list = NULL;
 	while ((data.file = readdir(data.directory)) != NULL)
 	{

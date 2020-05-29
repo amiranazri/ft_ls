@@ -3,10 +3,9 @@
 void ft_ls(char *tmp)
 {
 	t_list	data;
-	t_list	pos;
 	t_list	*list;
 
-	data.directory = opendir(".");
+	data.directory = opendir(tmp);
 	list = NULL;
 	while ((data.file = readdir(data.directory)) != NULL)
 	{
