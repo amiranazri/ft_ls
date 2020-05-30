@@ -32,7 +32,8 @@ typedef struct s_list
 }				t_list;
 
 int		ft_blocks(t_list *tmp);
-void 	ft_check(char *tmp);
+void	ft_data_type(char *tmp);
+void	ft_flag_action(char *flag, int ac, char **av);
 void	ft_ls(char *tmp);
 void	arguments(char *tmp);
 void    ft_print_list(t_list *head);
@@ -47,7 +48,6 @@ void	ft_loop_list(t_list *tmp);
 void	ft_sort(t_list *tmp);
 void	ft_reverse_sort(t_list *tmp);
 void	ft_time_sort(t_list *tmp);
-// void	deleteAllNodes(t_list *start);
 int		ft_blocks(t_list *tmp);
 t_list	*add_node(t_list *head, char *file_name); 
 

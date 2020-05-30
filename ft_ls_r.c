@@ -3,7 +3,6 @@
 void ft_ls_r(char *tmp)
 {
 	t_list	data;
-	t_list	pos;
 	t_list	*list;
 
 	data.directory = opendir(tmp);

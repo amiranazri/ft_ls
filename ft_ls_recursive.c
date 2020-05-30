@@ -3,7 +3,6 @@
 void	ft_ls_recursive(const char *tmp)
 {
 	t_list	data;
-	struct stat	status;
 
 	data.directory = opendir(tmp);
 	tmp = ft_strdup(tmp);

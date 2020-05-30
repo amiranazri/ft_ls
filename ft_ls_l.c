@@ -74,7 +74,6 @@ void ft_ls_long(char *tmp)
 	int				i;
 	char			*array1;
 	char			*array2;
-	struct node		*node;
 	struct group	*group;
 	struct passwd	*password;
 	struct stat		status;
