@@ -41,6 +41,7 @@ void ft_permissions(struct stat status)
 	(status.st_mode & S_IROTH) ? ft_putchar('r') : ft_putchar('-');
 	(status.st_mode & S_IWOTH) ? ft_putchar('w') : ft_putchar('-');
 	(status.st_mode & S_IXOTH) ? ft_putchar('x') : ft_putchar('-');
+	(status.st_mode & S_ISVTX) ? ft_putchar('@') : ft_putchar('-');
 }
 
 void ft_ls_l(char *path)

@@ -33,8 +33,7 @@ typedef struct s_list
 
 int		ft_blocks(t_list *tmp);
 void	ft_data_type(char *tmp);
-void	ft_flag_action(char *flag, int ac, char **av);
-void	ft_ls(char *tmp);
+void	ft_ls(char **tmp);
 void	arguments(char *tmp);
 void    ft_print_list(t_list *head);
 void    insert_node(char *file_name, t_list *node);
