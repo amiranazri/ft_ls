@@ -1,24 +1,30 @@
 #include "ft_ls.h"
 
-t_bool ft_isdir(char **args)
+int ft_isdir(char *args)
 {
-   int         ret;
-   struct stat *status;
+   t_list   current;
 
-   status = NULL;
-   ret = (S_ISDIR(stat(*args, status)) ? true : false);
-   return (ret);
+   if ((current.directory = opendir(args)) != NULL)
+   {
+      while ((current.file = readdir(current.directory)))
+      {
+         if ((current.file)->d_type == DT_DIR)
+            return (true);
+      }
+      closedir(current.directory);
+   }
+   return (0);
 }
 
-t_bool ft_isreg(char **args)
-{
-   int         ret;
-   struct stat *status;
+// t_bool ft_isreg(char **args)
+// {
+//    int         ret;
+//    struct stat *status;
 
-   status = NULL;
-   ret = (S_ISREG(stat(*args, status)) ? true : false);
-   return (ret);
-}
+//    status = NULL;
+//    ret = (S_ISREG(stat(*args, status)) ? true : false);
+//    return (ret);
+// }
 
 t_bool   ft_is_valid(char option)
 {
@@ -36,6 +42,28 @@ void  ft_error(char option)
    ft_putchar(option);
    ft_putchar(10);
    ft_putstr("usage: ls [-@Ralr\%] [file ...]");
+}
+
+t_list  *ft_store_files(int ac, char **av)
+{
+   int         i;
+   t_list      *items;
+   struct stat status;
+
+   i = 1;
+   items = NULL;
+   while (ac > i)
+   {
+      if (av[i][0] != 45)
+      {
+         if (stat(av[i], &status))
+            ft_putendl("No such file or directory.");
+         else
+            items = add_node(items, av[i]);
+      }
+      i++;
+   }
+   return (items);
 }
 
 char  *ft_parse_flags(int ac, char **av)
@@ -69,6 +97,8 @@ char  *ft_parse_flags(int ac, char **av)
       i++;
    }
    store[k] = '\0';
+   if (store[0] == '\0')
+      return (NULL);
    return (store);
 }
 
@@ -95,7 +125,7 @@ int   main(int ac, char **av)
    int      i;
    int      j;
    char     *str;
-   t_list   data;
+   t_list   *store;
 
    i = 1;
    j = 0;
@@ -105,29 +135,54 @@ int   main(int ac, char **av)
    {
       //seperate non essentials and store flags.
       str = ft_parse_flags(ac, av);
-      while (av[i])
+      store = ft_store_files(ac, av);
+      if(store != NULL && str == NULL)
       {
-         if (av[i][0] != 45)
+         while (store != NULL)
          {
-            if (ft_isdir(&av[i]) == true)
-               data.directory = opendir(av[i]);
+            if (ft_isdir(store->data_name))
+               ft_ls(store->data_name);
             else
-               ft_putendl(av[i]);
+               ft_putendl(store->data_name);
+            store = store->next;
          }
-         if (str != NULL)
-         {
-            if (ft_strchr(str, FLAGS[0]) != NULL)
-               ft_ls_recursive(".");
-            else if (ft_strchr(av[i], FLAGS[1]) != NULL)
-               ft_ls_a(".");
-            else if (ft_strchr(av[i], FLAGS[2]) != NULL)
-               ft_ls_l(".");
-            else if (ft_strchr(av[i], FLAGS[3]) != NULL)
-               ft_ls_t(".");
-            else if (ft_strchr(av[i], FLAGS[4]) != NULL)
-               ft_ls_r(".");
-         }
-         i++;
       }
+      else if (str != NULL && store == NULL)
+      {
+         if (ft_strchr(str, FLAGS[0]) != NULL)
+            ft_ls_recursive(".");
+         else if (ft_strchr(str, FLAGS[1]) != NULL)
+            ft_ls_a(".");
+         else if (ft_strchr(str, FLAGS[2]) != NULL)
+            ft_ls_l(".");
+         else if (ft_strchr(str, FLAGS[3]) != NULL)
+            ft_ls_t(".");
+         else if (ft_strchr(str, FLAGS[4]) != NULL)
+            ft_ls_r(".");
+      }
+      else if (store != NULL && str != NULL)
+      {
+         while (store != NULL)
+         {
+            if (ft_isdir(store->data_name))
+            {
+               if (ft_strchr(str, FLAGS[0]) != NULL)
+                  ft_ls_recursive(store->data_name);
+               else if (ft_strchr(str, FLAGS[1]) != NULL)
+                  ft_ls_a(store->data_name);
+               else if (ft_strchr(str, FLAGS[2]) != NULL)
+                  ft_ls_l(store->data_name);
+               else if (ft_strchr(str, FLAGS[3]) != NULL)
+                  ft_ls_t(store->data_name);
+               else if (ft_strchr(str, FLAGS[4]) != NULL)
+                  ft_ls_r(store->data_name);
+            }
+            else
+               ft_putendl(store->data_name);
+            store = store->next;
+         }
+      }
+      i++;
+      }
+   return (0);
    }
-}
