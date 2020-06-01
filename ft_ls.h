@@ -28,8 +28,8 @@ typedef struct	s_list
 }				t_list;
 
 int		ft_blocks(t_list *tmp);
-void	ft_error(char *av);
-// void	ft_data_type(char *tmp, char **av);
+char	*ft_parse_flags(int ac, char **av);
+void	ft_error(char option);
 void	arguments(char *tmp);
 void    ft_print_list(t_list *head);
 void    insert_node(char *file_name, t_list *node);
@@ -44,6 +44,7 @@ void	ft_ls_a(char *tmp);
 void	ft_ls_t(char *tmp);
 void	ft_ls_l(char *tmp);
 void	ft_ls_long(char *tmp);
+t_bool	ft_is_valid(char option);
 t_list	*add_node(t_list *head, char *file_name); 
 
 #endif
