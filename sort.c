@@ -62,6 +62,7 @@ void ft_reverse_sort(t_list *tmp)
     }
 	tmp->next = NULL;
 	tmp = start;
+    free_list(tmp);
 }
 
 void ft_time_sort(t_list *tmp)
@@ -90,4 +91,5 @@ void ft_time_sort(t_list *tmp)
     }
 	tmp->next = NULL;
 	tmp = start;
+    free_list(tmp);
 }

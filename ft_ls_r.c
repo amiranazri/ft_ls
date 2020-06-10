@@ -15,5 +15,6 @@ void ft_ls_r(char *tmp)
 	}
 	ft_reverse_sort(list);
 	ft_print_list(list);
+	free_list(list);
 	closedir(data.directory);
 }

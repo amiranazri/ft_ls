@@ -8,4 +8,5 @@ t_list *new_node(char *file_name)
     new_node->data_name = ft_strdup(file_name);
     new_node->next = NULL;
     return (new_node);
+    free_list(new_node);
 }

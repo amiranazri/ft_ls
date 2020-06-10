@@ -106,5 +106,6 @@ void ft_ls_long(char *tmp)
 	ft_putstr(tmp);
 	ft_putchar(32);
 	ft_putchar(10);
-	free(array2);
-}
+	// free(array2);
+	free_list(array2);
+	}

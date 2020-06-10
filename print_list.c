@@ -10,4 +10,5 @@ void    ft_print_list(t_list *head)
         ft_putendl(tmp->data_name);
         tmp = tmp->next;
     }
+    free_list(tmp);
 }

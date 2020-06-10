@@ -14,4 +14,5 @@ void    insert_node(char *file_name, t_list *node)
     head->next->data_name = ft_strdup(file_name);
     node = head;
     head->next->next = NULL;
+    free_list(head);
 }

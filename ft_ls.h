@@ -45,8 +45,8 @@ void	ft_ls_a(char *tmp);
 void	ft_ls_t(char *tmp);
 void	ft_ls_l(char *tmp);
 void	ft_ls_long(char *tmp);
-// t_bool	ft_isreg(char **args);
 t_bool	ft_is_valid(char option);
+t_list	*free_list(t_list *head);
 t_list	*add_node(t_list *head, char *file_name); 
 t_list	*ft_store_files(int ac, char **av);
 
